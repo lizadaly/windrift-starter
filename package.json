@@ -1,0 +1,22 @@
+{
+  "name": "windrift-starter",
+  "version": "1.0.0",
+  "description": "A simple framework for getting started with a Windrift story",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizadaly/windrift-starter.git"
+  },
+  "author": "Liza Daly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lizadaly/windrift-starter/issues"
+  },
+  "homepage": "https://github.com/lizadaly/windrift-starter#readme",
+  "dependencies": {
+    "windrift": "github:lizadaly/windrift"
+  }
+}
