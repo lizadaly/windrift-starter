@@ -4,12 +4,19 @@ import { Map, List, FromInventory, RenderSection, NextChapter, AllButSelection} 
 export default ({currentSection, inventory}) => {
   const sections = [
     <section>
-      <h2>Chapter</h2>
+      <h2>Chapter Two</h2>
 
       <p>
-        As we agreed, a photo of a <FromInventory inventory={inventory.animal} /> and
-        not a <AllButSelection from={inventory.animal} />.
+        As we agreed, a photo of <FromInventory inventory={inventory.animals} /> and
+        not <AllButSelection selection={inventory.animals} expansions={["cats", "dogs"]}/>.
       </p>
+      <figure>
+        <img src={'images/' + inventory.animals + '.jpg'} />
+      </figure>
+      <p>
+        More documentation is available at the <a href="https://github.com/lizadaly/windrift-starter">Github repo</a>
+        for this project.
+    </p>
     </section>
   ]
   return <RenderSection currentSection={currentSection} sections={sections} />

@@ -1,52 +1,54 @@
 {
-    "name": "windrift-starter",
-    "version": "1.0.0",
-    "description": "A simple framework for getting started with a Windrift story",
-    "main": "index.js",
-    "scripts": {
-        "test": "test"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/lizadaly/windrift-starter.git"
-    },
-    "author": "Liza Daly",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/lizadaly/windrift-starter/issues"
-    },
-    "homepage": "https://github.com/lizadaly/windrift-starter#readme",
-    "dependencies": {
-        "windrift": "github:lizadaly/windrift"
-    },
-    "devDependencies": {
-        "html-webpack-plugin": "^2.22.0",
-        "webpack-dev-server": "^1.16.2",
-        "babel": "^6.5.2",
-        "babel-cli": "^6.16.0",
-        "babel-core": "^6.16.0",
-        "babel-loader": "^6.2.5",
-        "babel-plugin-transform-object-rest-spread": "^6.16.0",
-        "babel-plugin-transform-runtime": "^6.9.0",
-        "babel-preset-es2015": "^6.16.0",
-        "babel-preset-react": "^6.5.0",
-        "chai": "^3.5.0",
-        "enzyme": "^2.4.1",
-        "enzyme-redux": "^0.1.6",
-        "gulp": "^3.9.0",
-        "gulp-autoprefixer": "^3.1.0",
-        "gulp-load-plugins": "^1.1.0",
-        "gulp-sass": "^2.1.0",
-        "isparta": "^4.0.0",
-        "istanbul": "^1.1.0-alpha.1",
-        "jsdom": "9.5.0",
-        "jsdom-global": "2.1.0",
-        "json-loader": "^0.5.4",
-        "mocha": "^3.1.0",
-        "react-addons-test-utils": "^15.3.2",
-        "redux-devtools": "^3.3.1",
-        "redux-test-utils": "^0.1.1",
-        "rewire": "^2.5.2",
-        "sinon": "^1.17.6"
-    }
+  "name": "windrift-starter",
+  "version": "1.0.0",
+  "description": "A simple framework for getting started with a Windrift story",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lizadaly/windrift-starter.git"
+  },
+  "author": "Liza Daly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lizadaly/windrift-starter/issues"
+  },
+  "homepage": "https://github.com/lizadaly/windrift-starter#readme",
+  "dependencies": {
+    "windrift": "github:lizadaly/windrift"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.5.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.4.1",
+    "enzyme-redux": "^0.1.6",
+    "foundation": "^4.2.1-1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-sass": "^2.1.0",
+    "html-webpack-plugin": "^2.22.0",
+    "isparta": "^4.0.0",
+    "istanbul": "^1.1.0-alpha.1",
+    "jsdom": "9.5.0",
+    "jsdom-global": "2.1.0",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.1.0",
+    "react-addons-test-utils": "^15.3.2",
+    "redux-devtools": "^3.3.1",
+    "redux-test-utils": "^0.1.1",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.6",
+    "webpack-dev-server": "^1.16.2"
+  }
 }

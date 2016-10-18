@@ -2,9 +2,13 @@ var webpack = require('webpack');
 
 module.exports = [{
   context: __dirname,
-  entry: "./index.js",
+  entry: {
+    starter: getEntrySources([
+      './index.js'
+    ]),
+  },
   output: {
-    path: __dirname + "/build",
+    path: __dirname,
     filename: "story.js"
   },
   module: {
@@ -19,3 +23,11 @@ module.exports = [{
   }
 }
 ];
+
+function getEntrySources(sources) {
+    if (process.env.NODE_ENV !== 'production') {
+        sources.push('webpack-dev-server/client?http://localhost:8080');
+    }
+
+    return sources;
+}
