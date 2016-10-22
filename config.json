@@ -2,6 +2,9 @@
   "title": "Windrift Starter",
   "author": "Liza Daly",
   "identifier": "windrift-starter-make-this-random",
-  "license": "https://creativecommons.org/licenses/by/4.0/",
-  "version": "1.0.0"
+  "keywords": "starter windrift javascript react interactive-fiction",
+  "description": "A starter application used for working with the Windrift story framework",
+  "license": "CC BY 4.0",
+  "version": "1.0.0",
+  "pagination": "scrolling"
 }
