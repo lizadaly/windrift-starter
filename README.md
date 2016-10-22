@@ -13,7 +13,7 @@ Windrift itself is written in ES6+, and this starter package includes the necess
 
 * npm
 
-Everything you need to build a Windrift story is in this package. You’re on your own for deploying it, but it’s just a self-contained web application with no backend, so should be deployable anywhere once built.
+Everything you need to build a Windrift story is in this package.  
 
 In the windrift-starter directory:
 
@@ -38,19 +38,49 @@ webpack: bundle is now VALID.
 
 Your application will be running on port 8080 by default.
 
-The dev server is set up to hot-reload changes (whenever you modify the source, the browser should auto-refresh).
+The dev server is set up to hot-reload changes: whenever you modify the source, the browser will auto-refresh.
 
 ## Your first story
 
-The entry point for the app at build time is `index.js`. You
-should not need to modify it for a basic Windrift story.
+### Config file setup
+
+Windrift expects a `story.conf` file to contain details about your
+story. It will pass these through to the generated HTML and give
+you nice metadata in the final product, which Google will appreciate.
+
+#### story.json
+
+```javascript
+{
+  "title": "Windrift Starter",
+  "author": "Liza Daly",
+  "identifier": "windrift-starter-make-this-random",
+  "keywords": "starter windrift javascript react interactive-fiction",
+  "description": "A starter application used for working with the Windrift story framework",
+  "license": "CC BY 4.0",
+  "version": "1.0.0",
+  "pagination": "scrolling"
+}
+```
+
+You should define a unique `identifier`—it's never
+exposed to readers, but there could be unexpected issues with
+other Windrift games if they are hosted on the same website
+(like ifcomp.org).
+
+### Start writing!
+
+Windrift-starter will look in your `chapters/` directory for
+JavaScript files and load them _in alphabetical order_.
+That becomes the canonical chapter order.
+
+If you need to modify this loading process, look in `index.js`:
 
 ```javascript
 function start() {
   var chaptersList = require.context('./chapters', true, /\.js$/)
 ```
 
-`start()` will automatically look in the `chapters/` directory and interpret each JS file in that directory as a Windrift "chapter." The filenames can be whatever you choose, but they should be ordered sequentially, like `chapter1.js`, `chapter2.js`.
 
 ### The sample chapters
 
@@ -58,8 +88,16 @@ This package comes with two sample chapters that make use of the primary compone
 
 ## Styling
 
+### HTML template
+
+The HTML for your story is in this project as `template.hbs`,
+an HTML file that uses Handlebars templates. You can safely
+ignore Handlebars itself; this is only used by the webpack
+bundler to put your `story.json` variables into the <head> and
+do other setup.
+
 ### CSS Frameworks
-Windrift outputs HTML that is designed to be compatible with the [Foundation for Sites](http://foundation.zurb.com/sites.html) CSS framework. Foundation isn’t bundled with Windrift, but this starter package references it in the head of `index.html`. Feel free to swap out Foundation for Bootstrap, or a custom framework of your choice.
+Windrift outputs HTML that is designed to be compatible with the [Foundation for Sites](http://foundation.zurb.com/sites.html) CSS framework. Foundation isn’t bundled with Windrift, but this starter package references it in the head of `template.hbs`. Feel free to swap out Foundation for Bootstrap, or a custom framework of your choice.
 
 ### Windrift-specific CSS
 
@@ -115,8 +153,24 @@ This is the CSS that was used in [Stone Harbor](https://stoneharborgame.com/), a
 
 ### Building and deploying
 
-The included development runner will build a new `story.js` on each change.
+When you’re ready to publish and deploy, run the following:
 
-When you’re ready to publish and deploy, you can simply copy the HTML tree as-is to a web-accessible location, such as Github Pages.
+```
+NODE_ENV="production" webpack
+```
 
-Because Windrift Starter uses webpack for building, you can use normal webpack extensions to minify, obfuscate, or otherwise optimize the outputted JS.
+This will build an optimized, minified, ready-for-production
+set of files in `dist/`, and will copy over the `images` and
+`css` using <a href="https://github.com/kevlened/copy-webpack-plugin">copy-webpack-plugin</a>.
+
+To modify or extend this process, edit webpack.config.js:
+
+```JavaScript
+// Copy all static assets during a built to the dist/ directory.
+// If you add other directory names, they'll go in here.
+new CopyWebpackPlugin([
+  { from: 'css', to: 'css' },
+  { from: 'images', to: 'images' },
+  { from: 'config.json'}
+])
+````
