@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-var config = require("./config.json");
+var config = require("./story.json");
 
 module.exports = [{
   context: __dirname,

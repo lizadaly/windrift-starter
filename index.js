@@ -1,5 +1,5 @@
 const React = require('react')
-import config from './config.json'
+import config from './story.json'
 import {Map, Game, startGame} from 'windrift'
 
 function start() {
