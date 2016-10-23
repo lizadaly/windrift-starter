@@ -34,9 +34,9 @@ export default ({currentSection, inventory}) => {
 
       <h4>Doing transformations on responses</h4>
       <p>
-        If you want to modify the user's response somehow, like by pluralizing it,
+        If you want to modify the user’s response somehow, like by pluralizing it,
         you can use the {`<FromInventory>`}
-        component to do so safely (even if the value wasn't yet set by the user):
+        component to do so safely (even if the value wasn’t yet set by the user):
       </p>
       <p className="game-text">
         One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
@@ -53,7 +53,7 @@ export default ({currentSection, inventory}) => {
       <h4>Expanding in-place for effect:</h4>
       <pre>{`<List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" />`}</pre>
       <p className="game-text">
-        I suppose that's an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
+        I suppose that’s an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
       </p>
     </section>,
     <section>
