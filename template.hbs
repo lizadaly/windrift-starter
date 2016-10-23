@@ -11,30 +11,35 @@
       <meta name="description" content="{{ htmlWebpackPlugin.options.description }}" />
       <meta name="author" content="{{ htmlWebpackPlugin.options.author }}" />
       <meta name="copyright" content="{{ htmlWebpackPlugin.options.license }}" />
-
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css" />
-      <link rel="stylesheet" href="css/windrift.css" />
-      <link rel="stylesheet" href="css/advanced.css" />
+      <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Playfair+Display" rel="stylesheet">
+      <link rel="stylesheet" href="css/cloak.css" />
   </head>
 
   <body class="pagination-{{ htmlWebpackPlugin.options.pagination }}">
 
+
       <nav class="top-bar">
-        <div class="top-bar-title">
-          {{ htmlWebpackPlugin.options.title }}
+        <div class="top-bar-left">
+          <a href="https://github.com/lizadaly/windrift/tree/master/examples/cloak-of-darkness">About this demo</a>
         </div>
         <div>
           <div class="top-bar-right">
             <a href="#" onClick="reset(event)">Restart</a></li>
           </div>
         </div>
-      </nav>
 
-      <div class="container">
-        <article id="article" class="row columns"></article>
+      </nav>
+    <div id="content">
+      <div class="row small-uncollapse medium-collapse">
+        <article id="article" class="medium-offset-5 large-offset-3 columns"></article>
+        <div class="columns small-1 small-collapse">
+        </div>
+        </div>
       </div>
 
-      <script defer src="ui.js"></script>
+    </div>
+
+    <script defer src="ui.js"></script>
 
   </body>
 

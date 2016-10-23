@@ -1,9 +1,7 @@
 {
-  "title": "Windrift Advanced demo",
+  "title": "Cloak of Darkness",
   "author": "Liza Daly",
-  "identifier": "windrift-advanced",
-  "keywords": "starter windrift javascript react interactive-fiction",
-  "description": "A demo of more advanced features in the Windrift story framework",
+  "identifier": "cloak-of-darkness-example-8FABA597-45AB-4982-8E4E-ECFBF817E639",
   "license": "CC BY 4.0",
   "version": "1.0.0",
   "pagination": "scrolling"
