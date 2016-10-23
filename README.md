@@ -152,7 +152,7 @@ This is the CSS that was used in [Stone Harbor](https://stoneharborgame.com/), a
 When you’re ready to publish and deploy, run the following:
 
 ```
-NODE_ENV="production" webpack
+NODE_ENV=production webpack
 ```
 
 This will build an optimized, minified, ready-for-production
@@ -169,4 +169,6 @@ new CopyWebpackPlugin([
   { from: 'images', to: 'images' },
   { from: 'config.json'}
 ])
-````
+```
+
+To "go live", just copy the entire `dist/` tree to a web-accessible location.

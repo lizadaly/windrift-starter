@@ -7,15 +7,11 @@ export default ({currentSection, inventory}) => {
       <h2>Chapter Two</h2>
 
       <p>
-        As we agreed, a photo of <FromInventory inventory={inventory.animals} /> and
-        not <AllButSelection selection={inventory.animals} expansions={["cats", "dogs"]}/>.
+        There‘s really nothing here, just an example of having a second chapter.
       </p>
-      <figure>
-        <img src={'images/' + inventory.animals + '.jpg'} />
-      </figure>
+
       <p>
-        More documentation is available at the <a href="https://github.com/lizadaly/windrift-starter">Github repo</a>
-        for this project.
+        More documentation is available at the <a href="https://github.com/lizadaly/windrift-starter">Github repo</a> for this project.
     </p>
     </section>
   ]
