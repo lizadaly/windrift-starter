@@ -16,14 +16,7 @@ module.exports = [{
     filename: "story.js"
   },
   module: {
-    loaders: [{ test: /.js/,
-                exclude: /node_modules/,
-                loader: 'babel',
-                query: {
-                  presets: ['react', 'es2015'],
-                  plugins: ['transform-object-rest-spread']
-                }
-              },
+    loaders: [{ test: /.js/, loaders: ['babel?cacheDirectory']},
               { test: /\.json$/, loader: 'json' },
               { test: /\.html$/, loader: 'html-loader'},
               { test: /\.hbs/, loader: 'handlebars-loader'}
