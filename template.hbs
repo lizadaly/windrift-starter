@@ -1,28 +1,31 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ htmlWebpackPlugin.options.title }}</title>
+  <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{{ htmlWebpackPlugin.options.title }}</title>
 
-  <meta name="keywords" content="{{ htmlWebpackPlugin.options.keywords }}" />
-  <meta name="description" content="{{ htmlWebpackPlugin.options.description }}" />
-  <meta name="author" content="{{ htmlWebpackPlugin.options.author }}" />
-  <meta name="copyright" content="{{ htmlWebpackPlugin.options.license }}" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css" />
-</head>
+      <meta name="keywords" content="{{ htmlWebpackPlugin.options.keywords }}" />
+      <meta name="description" content="{{ htmlWebpackPlugin.options.description }}" />
+      <meta name="author" content="{{ htmlWebpackPlugin.options.author }}" />
+      <meta name="copyright" content="{{ htmlWebpackPlugin.options.license }}" />
 
-<body>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css" />
+      <link rel="stylesheet" href="css/windrift.css" />
+  </head>
 
-  <nav class="top-bar">
-      <a href="#" onClick="reset(event)">Restart</a></li>
-  </nav>
+  <body class="pagination-{{ htmlWebpackPlugin.options.pagination }}">
 
-  <article id="article" class="row columns"></article>
+      <nav class="top-bar">
+          <a href="#" onClick="reset(event)">Restart</a></li>
+      </nav>
 
-  <script defer src="ui.js"></script>
+      <article id="article" class="row columns"></article>
 
-</body>
+      <script defer src="ui.js"></script>
+
+  </body>
+
 </html>

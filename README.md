@@ -90,11 +90,7 @@ This package comes with two sample chapters that make use of the primary compone
 
 ### HTML template
 
-The HTML for your story is in this project as `template.hbs`,
-an HTML file that uses Handlebars templates. You can safely
-ignore Handlebars itself; this is only used by the webpack
-bundler to put your `story.json` variables into the <head> and
-do other setup.
+The HTML for your story is in this project as `template.hbs`, an HTML file that uses Handlebars templates. You can safely ignore Handlebars itself; this is only used by the webpack bundler to put your `story.json` variables into the <head> and do other setup.
 
 ### CSS Frameworks
 Windrift outputs HTML that is designed to be compatible with the [Foundation for Sites](http://foundation.zurb.com/sites.html) CSS framework. Foundation isn’t bundled with Windrift, but this starter package references it in the head of `template.hbs`. Feel free to swap out Foundation for Bootstrap, or a custom framework of your choice.
