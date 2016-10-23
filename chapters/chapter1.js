@@ -76,11 +76,11 @@ export default ({currentSection, inventory}) => {
       You can evaluate inventory values in ordinary JavaScript directly:
     </p>
 
-    <pre>{`Looks like you'll have two {inventory.animal} named
+    <pre>{`Looks like you’ll have two {inventory.animal} named
     { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
 
     <p className="game-text">
-      Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
+      Looks like you’ll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
     </p>
 
     <h4>Using Maps</h4>
@@ -90,17 +90,17 @@ export default ({currentSection, inventory}) => {
     </p>
 
     <pre>{`<Map from={inventory.name2} to={{
-      vladimir: " that's a fine Russian name",
-      xiùlán: " that's a fine Chinese name",
-      ikiaq: " that's a fine Inuit name"
+      vladimir: " that’s a fine Russian name",
+      xiùlán: " that’s a fine Chinese name",
+      ikiaq: " that’s a fine Inuit name"
     }}/>`}</pre>
 
     <p className="game-text">
       {inventory.name2}:
       <Map from={inventory.name2} to={{
-        vladimir: " that's a fine Russian name",
-        xiùlán: " that's a fine Chinese name",
-        ikiaq: " that's a fine Inuit name"
+        vladimir: " that’s a fine Russian name",
+        xiùlán: " that’s a fine Chinese name",
+        ikiaq: " that’s a fine Inuit name"
       }}/>.
     </p>
 
