@@ -39,7 +39,7 @@ module.exports = [{
     new CopyWebpackPlugin([
       { from: 'css', to: 'css' },
       { from: 'images', to: 'images' },
-      { from: 'config.json'}
+      { from: 'story.json'}
     ])
   ]
 }];
