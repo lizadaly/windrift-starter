@@ -59,7 +59,8 @@ you nice metadata in the final product, which Google will appreciate.
   "description": "A starter application used for working with the Windrift story framework",
   "license": "CC BY 4.0",
   "version": "1.0.0",
-  "pagination": "scrolling"
+  "pagination": "scrolling",
+  "enableUndo": true
 }
 ```
 
@@ -146,6 +147,58 @@ This is the CSS that was used in [Stone Harbor](https://stoneharborgame.com/), a
   transition: opacity 300ms ease-in;
 }
 ```
+
+### UI configuration
+
+Windrift comes with a few options for customizing the user experience that you can set
+via `story.json`:
+
+#### Pagination
+
+```javascript
+"pagination": "scrolling"
+```
+
+By default, Windrift presents stories in a scrolling fashion: each successive chapter or
+section appears beneath the previous one. This is most consistent with how the web works.
+(If you are familiar with Twine, this is also how the "Jonah" story format works.)
+
+```javascript
+"pagination": "by-chapter"
+```
+
+For some kinds of stories it may be desirable to "paginate" by chapter, such that when
+the reader goes to a new chapter, the previous one is wiped away. (This is how
+most Twine games work.)
+
+```javascript
+"pagination": "by-section"
+```
+
+Like `by-chapter`, but with a smaller granularity. This might be best for interactive
+poems or other pieces where continuous narrative is less important.
+
+Note that for both `by-chapter` and `by-section` you may want some custom CSS to prevent
+the first unit of text from flashing by when the user refreshes the browser.
+
+#### Undo/browser-back
+
+```javascript
+"enableUndo": true
+```
+
+By default, Windrift pushes user events to the browser's history such that the back/forward
+buttons will work as readers expect them to. If you want to remove this feature,
+set this value to `false` in `story.json`.
+
+You may want to disable it for purely artistic reasons, but there are practical
+considerations too: if your story allows readers to update previous choices
+more than once, earlier passages may cease to make sense. You may also make use
+of the various callbacks allowed in Map and List which could mutate the user
+experience in a way that Windrift can't undo. See <a href="https://lizadaly.github.io/windrift/examples/advanced/">Advanced usage</a> for some examples.
+
+Disabling undo _does not_ disable the ability for Windrift to resume where a user left
+off after a browser refresh, just forward/back.
 
 ### Building and deploying
 
