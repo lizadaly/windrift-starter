@@ -1,149 +1,184 @@
 const React = require('react')
-import { Map, List, RenderSection, FromInventory, NextChapter} from 'windrift'
-
-
+const ReactDOM = require('react-dom')
+import { Map, List, FromInventory, RenderSection, NextChapter} from 'windrift'
 
 export default ({currentSection, inventory}) => {
+
+  const listOnCompleteColor = (item) => {
+    document.getElementById('block1').style.backgroundColor = item
+  }
+
   const sections = [
     <section>
-      <style>{`/* Some styles for this demo. Delete this when starting your own project. */
-        .game-text { margin: 1rem; padding: 1rem; font-size: 1rem; border-left: 1px dotted gray; font-family: Georgia; color: #485C5A }
-        pre { margin: .5rem; padding: .5rem; font-family: Consolas, Menlo, monospace; background: rgb(240,240,240)}
-      `}
-      </style>
-      <h2>Windrift Starter</h2>
+      <h2>Advanced usage</h2>
+
+      <h4>Changing the UI in response to a user selection</h4>
       <p>
-        Welcome to the Windrift Starter package. Lets try out a few features:
+        Suppose you want to change the user experience in some way in
+        response to a user's selection, like by picking a favorite color:
       </p>
-      <h4>A List of two choices</h4>
+      <div className="block-container">
+        <small>Block 1</small>
+        <div className="block" style={{backgroundColor: inventory.t1 || 'white'}}></div>
+        <p>
+          Pick a color: <List expansions={[["chartreuse", "violet"], "_last"]} tag="t1" conjunction="or" />
+        </p>
+      </div>
+
+      <h5>Method 1: Use declarative values only <span className="success label">Recommended</span></h5>
+
       <p>
-        You can choose an item, and both items will remain displayed:
-      </p>
-      <pre>{`<List expansions={[["dogs", "cats"], ["dogs", "cats"]}} tag="animal" conjunction="or"/>`}</pre>
-
-      <p className="game-text">
-        Do you prefer <List expansions={[["dogs", "cats"], ["dogs", "cats"]]} tag="animal" conjunction="or"/>?
-      </p>
-    </section>,
-    <section>
-      <h4>To display the user‘s response, just evaluate the inventory value in the markup directly:</h4>
-      <pre>{`<p>Hmm, {inventory.animal}, really?</p>`}</pre>
-      <p className="game-text">
-        Hmm, {inventory.animal}, really?
+        Whenever feasible, just use the
+        <code>inventory</code> directly in your Chapter markup, following React's
+        constraints around HTML and CSS grammar:
       </p>
 
-      <h4>Doing transformations on responses</h4>
+      <h5>Element source</h5>
+      <pre>{`<div className="block" style={{backgroundColor: inventory.t1 || 'white'}}></div>`}</pre>
+
+      <h5>List code</h5>
+      <pre>{`<List expansions={[["chartreuse", "violet"], "_last"]}
+      tag="t1" conjunction="or" />`}</pre>
+
       <p>
-        If you want to modify the user's response somehow, like by pluralizing it,
-        you can use the {`<FromInventory>`}
-        component to do so safely (even if the value wasn't yet set by the user):
-      </p>
-      <p className="game-text">
-        One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
-        {inventory.animal}. <FromInventory from={inventory.animal} onLoad={(from) => from.charAt(0).toUpperCase() + from.slice(1)} /> are great.
+        Make sure you provide a default value (here "white"). Before the user
+        has made a selection, the inventory value will return undefined, and that
+        value may be invalid for some properties (like size-based ones).
       </p>
       <p>
-        If you expect to do a lot of these transformations, you could make a function or component
-        to wrap them:
+        <b>TL;DR: this is the preferred method.</b> The next two methods are ones
+        you might consider as you get further into Windrift, but have significant
+        drawbacks.
       </p>
-      <p className="game-text">
-        YOU MUST REALLY LOVE <AllCaps text={inventory.animal} /> HUH
+      <hr/>
+      <h5>Method 2: UI changes via lifecycle callbacks <span className="warning label">Caution</span></h5>
+      <p>
+        The Windrift Map and List components accept a number of callbacks that fire
+        lifecycle events:
+      </p>
+      <ul>
+        <li><code>List</code> and <code>Map</code> both accept an <code>onLoad</code>
+          function, which fires <em>exactly once</em>—when the Chapter containing
+          the component is mounted. It will not re-fire when the user moves forward or
+          back through history.
+        </li>
+        <li><code>List</code> accepts an <code>onComplete</code> function, which fires
+        any time the List is exhausted (including when the user hits "back" and re-selects
+        the last expansion). The onComplete function receives the last selection for that
+        List as its first argument.</li>
+        <li><code>Map</code> accepts an <code>onChange</code> function, which
+        fires any time the Map has received new props (typically meaning the related
+        inventory value has been updated).</li>
+      </ul>
+
+      <h5>Callback</h5>
+      <pre>{`const listOnCompleteColor = (item) => {
+    document.getElementById('block1').style.backgroundColor = item
+}`}</pre>
+
+      <h5>List code</h5>
+      <pre>{`<List expansions={[["cyan", "goldenrod"], "_last"]}
+      onComplete={listOnCompleteColor}
+      conjunction="or" tag="t2" />`}</pre>
+      <div className="block-container">
+
+        <small>Block 2</small>
+        <div className="block" id="block1"></div>
+
+        <p>
+          <List expansions={[["cyan", "goldenrod"], "_last"]} tag="t2" conjunction="or" onComplete={listOnCompleteColor} />
+        </p>
+      </div>
+      <p>
+        Note that if you now use the browser "back" button, Windrift will undo the List expansion,
+        but the color will remain the same—the system has no awareness of what your callback
+        did. <b>For this reason, it is not advised to enable both state-modifying callbacks and
+        undo.</b>
       </p>
 
-      <h4>Expanding in-place for effect:</h4>
-      <pre>{`<List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" />`}</pre>
-      <p className="game-text">
-        I suppose that's an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
+      <hr/>
+      <h5>Method 3: UI changes via Map values <span className="warning label">Caution</span></h5>
+
+      <p>
+        Maps can accept a wildcard key <code>_any</code> that will match any defined inventory
+        value, and they can also return a function rather than a string or HTML node.
+        By combining these two properties, you can implement a kind of primitive event
+        handler yourself. But it's not suitable for all use cases:
       </p>
-    </section>,
-    <section>
-      <h4>Pick one, retain the answer</h4>
-      <pre>{`<List expansions={[["Vladimir", "Xiùlán", "Ikiaq"], "_last"]} tag="name1" conjunction="or" />`}</pre>
-      <p className="game-text">
-        What would you like to name your pet {inventory.animal ? inventory.animal.substring(0, inventory.animal.length -1): null}:{' '}
-        <List expansions={[["Vladimir", "Xiùlán", "Ikiaq"], "_last"]} tag="name1" conjunction="or" />
+
+      <h5>Element source</h5>
+      <pre>{`<div className="block" id="block3"></div>
+      `}</pre>
+
+      <h5>List and Map code</h5>
+      <pre>{`<List expansions={[["coral", "yellowgreen"], "_last"]} tag="t3" conjunction="or" />
+
+<Map from={inventory.t3} to={{
+  '_undefined': () => {
+    setTimeout(() => {document.getElementById('block3').style.backgroundColor = 'white'}, 50)
+    return null
+  },
+  '_any': () => {
+    setTimeout(() => {document.getElementById('block3').style.backgroundColor = inventory.t3}, 50)
+    return null
+  }
+}} />`}</pre>
+
+      <div className="block-container">
+        <small>Block 3</small>
+        <div className="block" id="block3"></div>
+        <p>
+          <List expansions={[["coral", "yellowgreen"], "_last"]} tag="t3" conjunction="or" />
+          <Map from={inventory.t3} to={{
+            '_undefined': () => {
+              setTimeout(() => {document.getElementById('block3').style.backgroundColor = 'white'}, 50)
+              return null
+            },
+            '_any': () => {
+              setTimeout(() => {document.getElementById('block3').style.backgroundColor = inventory.t3}, 50)
+              return null
+            }
+          }} />
+        </p>
+      </div>
+
+      <p>
+        That looks gross, of course. But it‘s useful to understand <i>why</i> the code
+        is so ugly:
       </p>
-    </section>,
-  <section>
-    <h4>Evaluating two different choices</h4>
-    <p className="game-text">If you had two {inventory.animal}, what would you name the other one:{' '}
-      <List expansions={[["Vladimir", "Xiùlán", "Ikiaq"], "_last"]} tag="name2" conjunction="or" />
-    </p>
-  </section>,
-  <section>
+      <ul>
+        <li>You need to define both <code>_undefined</code> and <code>_any</code>{' '}
+      keys, so that the Map will properly "undo" itself when the reader uses the
+      back button.</li>
+      <li>Your Map function needs to explicitly return <code>null</code>, because
+      it's evaluated as the Map's <code>render()</code> function. Returning nothing
+      (undefined) will cause React to complain.</li>
 
-    <p>
-      You can evaluate inventory values in ordinary JavaScript directly:
-    </p>
-
-    <pre>{`Looks like you'll have two {inventory.animal} named
-    { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
-
-    <p className="game-text">
-      Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
-    </p>
-
-    <h4>Using Maps</h4>
-
-    <p>
-      Maps can be used to simply return canned responses to choices:
-    </p>
-
-    <pre>{`<Map from={inventory.name2} to={{
-      vladimir: " that's a fine Russian name",
-      xiùlán: " that's a fine Chinese name",
-      ikiaq: " that's a fine Inuit name"
-    }}/>`}</pre>
-
-    <p className="game-text">
-      {inventory.name2}:
-      <Map from={inventory.name2} to={{
-        vladimir: " that's a fine Russian name",
-        xiùlán: " that's a fine Chinese name",
-        ikiaq: " that's a fine Inuit name"
-      }}/>.
-    </p>
-
-    <p>
-      But since Maps can return markup themselves, they can also be used to build up further choices:
-    </p>
-
-    <pre>{`<Map from={inventory.name2} to={{
-      vladimir: <p>Since you like Russian names, why not pick a second one from this set:{' '}
-      <List expansions={[["Alexei", "Darya", "Elena"], "_last"]} tag="name3" conjunction="or" /></p>,
-      xiùlán: <p>Since you like Chinese names, why not pick a second one from this set:{' '}
-      <List expansions={[["Li Jing", "Zhang Yan", "Wang Jie"], "_last"]} tag="name3" conjunction="or" /></p>,
-      ikiaq: <p>Since you like Inuit names, why not pick a second one from this set:{' '}
-      <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
-    }}/>`}</pre>
-
-    <div className="game-text">
-      <Map from={inventory.name2} to={{
-        vladimir: <p>Since you like Russian names, why not pick a second one from this set:{' '}
-          <List expansions={[["Alexei", "Darya", "Elena"], "_last"]} tag="name3" conjunction="or" /></p>,
-        xiùlán: <p>Since you like Chinese names, why not pick a second one from this set:{' '}
-          <List expansions={[["Li Jing", "Zhang Yan", "Wang Jie"], "_last"]} tag="name3" conjunction="or" /></p>,
-        ikiaq: <p>Since you like Inuit names, why not pick a second one from this set:{' '}
-          <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
-      }}/>
-    </div>
-
-  </section>,
-  <section>
-    <p>
-      For more advanced uses of Maps and Lists, see the <a href="https://lizadaly.github.io/windrift/examples/advanced/">Advanced demo</a> and <a href="https://github.com/lizadaly/windrift/blob/master/examples/advanced/chapters/chapter1.js">sample code</a>.
-    </p>
-    <p className="game-text">
-      Great, you can now begin your story with your two {inventory.animal}, {inventory.name1} and {inventory.name3}.
-    </p>
-
-    <NextChapter chapter={2}/>
-
-  </section>
-  ]
-  return <RenderSection currentSection={currentSection} sections={sections} />
+      <li><p>A Map's <code>to</code> values are evaluated during the component's <code>render()</code>
+        method, which imposes a number of constraints: you can't modify any state (so no
+        dispatching any actions that modify the global store), and <b>you aren't guaranteed
+        that any other elements in the DOM are available yet</b>. If you run the code
+        without the timer, you'll probably get a runtime exception that <code>#block3</code>
+        doesn't exist. This seems counter-intuitive when the div is defined before the Map,
+        but React renders elements in its own sweet time. There are two solutions for this:
+        </p>
+        <ul>
+          <li>Blindly set a timer, as in this example. Your transition may be visibly
+          delayed, and on slow browsers or long chapters it may fire before the DOM is actually done.
+          </li>
+          <li>Use a library like <a href="https://github.com/uzairfarooq/arrive">arrive.js</a>,
+            which will listen for the availability of an element by selector (<a href="https://github.com/uzairfarooq/arrive/issues/42">instructions for integrating with webpack</a>).</li>
+        </ul>
+      </li>
+      </ul>
+      <p>
+        TL;DR if you're going to do extensive modifications of the DOM
+        in your story that can't be accomplished via CSS properties, it's better
+        to write custom UI components that listen directly
+        to <code>inventory</code> or even to your own custom actions. There's an
+        example in the <a href="https://github.com/lizadaly/stone-harbor-game/blob/master/src/chapters/chapter5.js#L202">Stone Harbor</a> repo.
+      </p>
+    </section>
+    ]
+   return <RenderSection currentSection={currentSection} sections={sections} />
 }
-
-const AllCaps = ({text}) => (
-  <FromInventory from={text} onLoad={(text) => text.toUpperCase()} />
-)

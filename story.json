@@ -1,9 +1,9 @@
 {
-  "title": "Windrift Starter",
+  "title": "Windrift Advanced demo",
   "author": "Liza Daly",
-  "identifier": "windrift-starter-make-this-random",
+  "identifier": "windrift-advanced",
   "keywords": "starter windrift javascript react interactive-fiction",
-  "description": "A starter application used for working with the Windrift story framework",
+  "description": "A demo of more advanced features in the Windrift story framework",
   "license": "CC BY 4.0",
   "version": "1.0.0",
   "pagination": "scrolling"
