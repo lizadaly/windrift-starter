@@ -1,5 +1,7 @@
 const React = require('react')
-import { Map, List, RenderSection, NextChapter} from 'windrift'
+import { Map, List, RenderSection, FromInventory, NextChapter} from 'windrift'
+
+
 
 export default ({currentSection, inventory}) => {
   const sections = [
@@ -29,6 +31,25 @@ export default ({currentSection, inventory}) => {
       <p className="game-text">
         Hmm, {inventory.animal}, really?
       </p>
+
+      <h4>Doing transformations on responses</h4>
+      <p>
+        If you want to modify the user's response somehow, like by pluralizing it,
+        you can use the {`<FromInventory>`}
+        component to do so safely (even if the value wasn't yet set by the user):
+      </p>
+      <p className="game-text">
+        One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
+        {inventory.animal}. <FromInventory from={inventory.animal} onLoad={(from) => from.charAt(0).toUpperCase() + from.slice(1)} /> are great.
+      </p>
+      <p>
+        If you expect to do a lot of these transformations, you could make a function or component
+        to wrap them:
+      </p>
+      <p className="game-text">
+        YOU MUST REALLY LOVE <AllCaps text={inventory.animal} /> HUH
+      </p>
+
       <h4>Expanding in-place for effect:</h4>
       <pre>{`<List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" />`}</pre>
       <p className="game-text">
@@ -55,7 +76,8 @@ export default ({currentSection, inventory}) => {
       You can evaluate inventory values in ordinary JavaScript directly:
     </p>
 
-    <pre>{`Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
+    <pre>{`Looks like you'll have two {inventory.animal} named
+    { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
 
     <p className="game-text">
       Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
@@ -95,7 +117,7 @@ export default ({currentSection, inventory}) => {
       <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
     }}/>`}</pre>
 
-    <p className="game-text">
+    <div className="game-text">
       <Map from={inventory.name2} to={{
         vladimir: <p>Since you like Russian names, why not pick a second one from this set:{' '}
           <List expansions={[["Alexei", "Darya", "Elena"], "_last"]} tag="name3" conjunction="or" /></p>,
@@ -104,7 +126,7 @@ export default ({currentSection, inventory}) => {
         ikiaq: <p>Since you like Inuit names, why not pick a second one from this set:{' '}
           <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
       }}/>
-    </p>
+    </div>
 
   </section>,
   <section>
@@ -121,3 +143,7 @@ export default ({currentSection, inventory}) => {
   ]
   return <RenderSection currentSection={currentSection} sections={sections} />
 }
+
+const AllCaps = ({text}) => (
+  <FromInventory from={text} onLoad={(text) => text.toUpperCase()} />
+)
