@@ -16,7 +16,14 @@ module.exports = [{
     filename: "story.js"
   },
   module: {
-    loaders: [{ test: /.js/, loaders: ['babel?cacheDirectory']},
+    loaders: [{ test: /.js/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                  presets: ['react', 'es2015'],
+                  plugins: ['transform-object-rest-spread']
+                }
+              },
               { test: /\.json$/, loader: 'json' },
               { test: /\.html$/, loader: 'html-loader'},
               { test: /\.hbs/, loader: 'handlebars-loader'}
