@@ -19,10 +19,19 @@
   <body class="pagination-{{ htmlWebpackPlugin.options.pagination }}">
 
       <nav class="top-bar">
-          <a href="#" onClick="reset(event)">Restart</a></li>
+        <div class="top-bar-title">
+          {{ htmlWebpackPlugin.options.title }}
+        </div>
+        <div>
+          <div class="top-bar-right">
+            <a href="#" onClick="reset(event)">Restart</a></li>
+          </div>
+        </div>
       </nav>
 
-      <article id="article" class="row columns"></article>
+      <div class="container">
+        <article id="article" class="row columns"></article>
+      </div>
 
       <script defer src="ui.js"></script>
 

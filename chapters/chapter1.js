@@ -1,5 +1,5 @@
 const React = require('react')
-import { Map, List, FromInventory, RenderSection, NextChapter} from 'windrift'
+import { Map, List, RenderSection, NextChapter} from 'windrift'
 
 export default ({currentSection, inventory}) => {
   const sections = [
@@ -11,7 +11,7 @@ export default ({currentSection, inventory}) => {
       </style>
       <h2>Windrift Starter</h2>
       <p>
-        Welcome to the Windrift Starter package. Let‘s try out a few features:
+        Welcome to the Windrift Starter package. Lets try out a few features:
       </p>
       <h4>A List of two choices</h4>
       <p>
@@ -54,14 +54,25 @@ export default ({currentSection, inventory}) => {
     <p>
       You can evaluate inventory values in ordinary JavaScript directly:
     </p>
+
     <pre>{`Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
+
     <p className="game-text">
       Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
     </p>
+
     <h4>Using Maps</h4>
+
     <p>
       Maps can be used to simply return canned responses to choices:
     </p>
+
+    <pre>{`<Map from={inventory.name2} to={{
+      vladimir: " that's a fine Russian name",
+      xiùlán: " that's a fine Chinese name",
+      ikiaq: " that's a fine Inuit name"
+    }}/>`}</pre>
+
     <p className="game-text">
       {inventory.name2}:
       <Map from={inventory.name2} to={{
@@ -70,9 +81,20 @@ export default ({currentSection, inventory}) => {
         ikiaq: " that's a fine Inuit name"
       }}/>.
     </p>
+
     <p>
       But since Maps can return markup themselves, they can also be used to build up further choices:
     </p>
+
+    <pre>{`<Map from={inventory.name2} to={{
+      vladimir: <p>Since you like Russian names, why not pick a second one from this set:{' '}
+      <List expansions={[["Alexei", "Darya", "Elena"], "_last"]} tag="name3" conjunction="or" /></p>,
+      xiùlán: <p>Since you like Chinese names, why not pick a second one from this set:{' '}
+      <List expansions={[["Li Jing", "Zhang Yan", "Wang Jie"], "_last"]} tag="name3" conjunction="or" /></p>,
+      ikiaq: <p>Since you like Inuit names, why not pick a second one from this set:{' '}
+      <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
+    }}/>`}</pre>
+
     <p className="game-text">
       <Map from={inventory.name2} to={{
         vladimir: <p>Since you like Russian names, why not pick a second one from this set:{' '}
@@ -83,18 +105,19 @@ export default ({currentSection, inventory}) => {
           <List expansions={[["Naaqtuuq", "Pakak", "Toklo"], "_last"]} tag="name3" conjunction="or" /></p>,
       }}/>
     </p>
+
   </section>,
-    <section>
-      <p>
-        For more advanced uses of Maps and Lists, see the <a href="https://lizadaly.github.io/windrift/examples/advanced/">Advanced demo</a> and <a href="https://github.com/lizadaly/windrift/blob/master/examples/advanced/chapters/chapter1.js">sample code</a>.
-      </p>
-      <p className="game-text">
-        Great, you can now begin your story with your two {inventory.animal}, {inventory.name1} and {inventory.name3}.
-      </p>
+  <section>
+    <p>
+      For more advanced uses of Maps and Lists, see the <a href="https://lizadaly.github.io/windrift/examples/advanced/">Advanced demo</a> and <a href="https://github.com/lizadaly/windrift/blob/master/examples/advanced/chapters/chapter1.js">sample code</a>.
+    </p>
+    <p className="game-text">
+      Great, you can now begin your story with your two {inventory.animal}, {inventory.name1} and {inventory.name3}.
+    </p>
 
-      <NextChapter chapter={2}/>
+    <NextChapter chapter={2}/>
 
-      </section>
-    ]
-    return <RenderSection currentSection={currentSection} sections={sections} />
+  </section>
+  ]
+  return <RenderSection currentSection={currentSection} sections={sections} />
 }
