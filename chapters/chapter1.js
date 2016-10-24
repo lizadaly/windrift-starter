@@ -40,9 +40,9 @@ export default ({currentSection, inventory}) => {
 
       <h4>Doing transformations on responses</h4>
       <p>
-        If you want to modify the user's response somehow, like by pluralizing it,
+        If you want to modify the user’s response somehow, like by pluralizing it,
         you can use the {`<FromInventory>`}
-        component to do so safely (even if the value wasn't yet set by the user):
+        component to do so safely (even if the value wasn’t yet set by the user):
       </p>
       <p className="game-text">
         One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
@@ -59,7 +59,7 @@ export default ({currentSection, inventory}) => {
       <h4>Expanding in-place for effect:</h4>
       <pre>{`<List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" />`}</pre>
       <p className="game-text">
-        I suppose that's an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
+        I suppose that’s an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
       </p>
     </section>,
     <section>
@@ -82,11 +82,11 @@ export default ({currentSection, inventory}) => {
       You can evaluate inventory values in ordinary JavaScript directly:
     </p>
 
-    <pre>{`Looks like you'll have two {inventory.animal} named
+    <pre>{`Looks like you’ll have two {inventory.animal} named
     { inventory.name1 === inventory.name2 ? "the same" : "differently" }.`}</pre>
 
     <p className="game-text">
-      Looks like you'll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
+      Looks like you’ll have two {inventory.animal} named { inventory.name1 === inventory.name2 ? "the same" : "differently" }.
     </p>
 
     <h4>Using Maps</h4>
@@ -96,17 +96,17 @@ export default ({currentSection, inventory}) => {
     </p>
 
     <pre>{`<Map from={inventory.name2} to={{
-      vladimir: " that's a fine Russian name",
-      xiùlán: " that's a fine Chinese name",
-      ikiaq: " that's a fine Inuit name"
+      vladimir: " that’s a fine Russian name",
+      xiùlán: " that’s a fine Chinese name",
+      ikiaq: " that’s a fine Inuit name"
     }}/>`}</pre>
 
     <p className="game-text">
       {inventory.name2}:
       <Map from={inventory.name2} to={{
-        vladimir: " that's a fine Russian name",
-        xiùlán: " that's a fine Chinese name",
-        ikiaq: " that's a fine Inuit name"
+        vladimir: " that’s a fine Russian name",
+        xiùlán: " that’s a fine Chinese name",
+        ikiaq: " that’s a fine Inuit name"
       }}/>.
     </p>
 
