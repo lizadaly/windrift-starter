@@ -41,9 +41,12 @@ export default ({currentSection, inventory}) => {
       <h4>Doing transformations on responses</h4>
       <p>
         If you want to modify the user’s response somehow, like by pluralizing it,
-        you can use the {`<FromInventory>`}
-        component to do so safely (even if the value wasn’t yet set by the user):
+        you can use the {`<FromInventory>`} component to do so safely (even if the
+        value wasn’t yet set by the user):
       </p>
+      {`One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
+{inventory.animal}. <FromInventory from={inventory.animal} onLoad={(from) => from.charAt(0).toUpperCase() + from.slice(1)} /> are great.
+`}
       <p className="game-text">
         One <FromInventory from={inventory.animal} onLoad={(from) => from.substring(0, from.length -1)} />, two{' '}
         {inventory.animal}. <FromInventory from={inventory.animal} onLoad={(from) => from.charAt(0).toUpperCase() + from.slice(1)} /> are great.
