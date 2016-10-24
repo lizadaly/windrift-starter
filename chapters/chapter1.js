@@ -13,7 +13,13 @@ export default ({currentSection, inventory}) => {
       </style>
       <h2>Windrift Starter</h2>
       <p>
-        Welcome to the Windrift Starter package. Lets try out a few features:
+        Welcome to the starter application for <a href="https://github.com/lizadaly/windrift/">Windrift</a>, a framework
+        for writing interactive stories. The source code for this demo is available in
+        the <a href="https://github.com/lizadaly/windrift-starter">windrift-starter</a> repository.
+      </p>
+      <p>
+        This page will walk through some of the most common features of a Windrift story,
+        and can be used as a way to bootstrap your own story.
       </p>
       <h4>A List of two choices</h4>
       <p>
