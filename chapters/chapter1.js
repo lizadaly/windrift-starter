@@ -7,10 +7,10 @@ export default ({currentSection, inventory}) => {
         <h2>Cloak of Darkness</h2>
         <aside>
           <p>
-            Hurrying through the rainswept November night, you're glad to see the
+            Hurrying through the rainswept November night, you’re glad to see the
             bright lights of the Opera House.
           </p>
-          <p>It's surprising that there aren't more
+          <p>It’s surprising that there aren’t more
           people about…</p>
 
         </aside>
@@ -22,7 +22,7 @@ export default ({currentSection, inventory}) => {
 
           <Map from={inventory.foyer_north} to={{
             _undefined: " and there  ",
-            north: ` but you've only just arrived, and besides, the weather
+            north: ` but you’ve only just arrived, and besides, the weather
             outside seems to be getting worse. There `
           }} />
           are doorways <List expansions={["south", "south"]} tag="foyer_south" nextUnit={null} /> and <List expansions={["west", "west"]} tag="foyer_west" />.
@@ -86,7 +86,7 @@ export default ({currentSection, inventory}) => {
 
         <h3>The Bar</h3>
         <p>
-          The bar, much rougher than you'd have guessed after the opulence of the
+          The bar, much rougher than you’d have guessed after the opulence of the
           foyer to the north, is completely empty. There seems to be some sort
           of <List expansions={["scrawled message", "scrawled message"]} tag="message" /> in the sawdust on the floor.
         </p>
@@ -102,7 +102,9 @@ export default ({currentSection, inventory}) => {
               </span></h1>
             </div>
             <p>
-              About the <a href="http://www.firthworks.com/roger/cloak/">Cloak of Darkness specification</a>
+              Read about the <a href="http://www.firthworks.com/roger/cloak/">Cloak of Darkness specification</a>,
+              and <a href="https://github.com/lizadaly/windrift/tree/master/examples/cloak-of-darkness">about this
+              implementation</a>.
             </p>
 
           </div>
