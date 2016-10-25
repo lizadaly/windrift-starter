@@ -13,7 +13,31 @@
       <meta name="copyright" content="{{ htmlWebpackPlugin.options.license }}" />
 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css" />
+
+      <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
       <link rel="stylesheet" href="css/windrift.css" />
+      <style>
+      .stanza {
+        margin-top: 2em;
+        font-family: 'EB Garamond', serif;
+        font-size: 1.4rem;
+      }
+      .stanza p {
+        line-height: 1em;
+      }
+      .stanza p:nth-child(1) {
+        text-indent: 2em;
+      }
+      .stanza p:nth-child(2) {
+        text-indent: 4em;
+      }
+      .stanza p:nth-child(3) {
+        text-indent: 6em;
+      }
+      .stanza p:nth-child(4) {
+        text-indent: 8em;
+      }
+      </style>
   </head>
 
   <body class="pagination-{{ htmlWebpackPlugin.options.pagination }}">
@@ -24,7 +48,7 @@
         </div>
         <div>
           <div class="top-bar-right">
-            <a href="#" onClick="resetGame(event)">Restart</a>
+            <a href="#" onClick="resetGame(event, 'Create a new poem?')">New poem</a>
           </div>
         </div>
       </nav>
