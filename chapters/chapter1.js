@@ -40,10 +40,9 @@ const wrap = (line) => {
   var words = line.split(' ')
   var i = randFromLen(words)
   var ret = words.map((word, index) => {
-    word += ' ' // Ensure our whitespace doesn't get collapsed
     if (index === i)
-      return <List expansions={[word + ' ', word]} tag={word} key={word} />
-    return <span key={word}>{word}</span>
+      return <span key={word}><List expansions={[word, word]} tag={word} />{' '}</span>
+    return <span key={word}>{word}{' '}</span>
   })
   return ret
 }
