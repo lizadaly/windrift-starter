@@ -13,12 +13,13 @@
   },
   "author": "Liza Daly",
   "license": "MIT",
+  "private": true,
   "bugs": {
     "url": "https://github.com/lizadaly/windrift-starter/issues"
   },
   "homepage": "https://github.com/lizadaly/windrift-starter#readme",
   "dependencies": {
-    "windrift": "github:lizadaly/windrift"
+    "windrift": "^1.0.1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -34,11 +35,6 @@
     "enzyme": "^2.4.1",
     "enzyme-redux": "^0.1.6",
     "extract-text-webpack-plugin": "^1.0.1",
-    "foundation": "^4.2.1-1",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-load-plugins": "^1.1.0",
-    "gulp-sass": "^2.1.0",
     "handlebars-loader": "^1.4.0",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.0",
@@ -53,7 +49,6 @@
     "redux-test-utils": "^0.1.1",
     "rewire": "^2.5.2",
     "sinon": "^1.17.6",
-    "webpack-dev-server": "^1.16.2",
-    "webpack-extract-text-plugin": "2.0.0-beta.4"
+    "webpack-dev-server": "^1.16.2"
   }
 }
