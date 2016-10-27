@@ -38,7 +38,8 @@ export default ({currentSection, inventory}) => {
       </p>
     </section>,
     <section>
-      <h4>To display the user‘s response, just evaluate the inventory value in the markup directly:</h4>
+      <p>To display the user‘s response, just evaluate the inventory value in the markup directly:</p>
+
       <pre>{`<p>Hmm, {inventory.animal}, really?</p>`}</pre>
       <p className="game-text">
         Hmm, {inventory.animal}, really?
@@ -61,11 +62,13 @@ export default ({currentSection, inventory}) => {
         If you expect to do a lot of these transformations, you could make a function or component
         to wrap them:
       </p>
+      <pre>{`YOU MUST REALLY LOVE <AllCaps text={inventory.animal} /> HUH`}</pre>
+
       <p className="game-text">
         YOU MUST REALLY LOVE <AllCaps text={inventory.animal} /> HUH
       </p>
 
-      <h4>Expanding in-place for effect:</h4>
+      <h4>Expanding in-place for effect</h4>
       <pre>{`<List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" />`}</pre>
       <p className="game-text">
         I suppose that’s an <List expansions={["acceptable", "understandable", "admirable"]} tag="adj1" /> choice...
@@ -81,6 +84,9 @@ export default ({currentSection, inventory}) => {
     </section>,
   <section>
     <h4>Evaluating two different choices</h4>
+
+    <pre>{`<List expansions={[["Vladimir", "Xiùlán", "Ikiaq"], "_last"]} tag="name2" conjunction="or" />`}</pre>
+    
     <p className="game-text">If you had two {inventory.animal}, what would you name the other one:{' '}
       <List expansions={[["Vladimir", "Xiùlán", "Ikiaq"], "_last"]} tag="name2" conjunction="or" />
     </p>
