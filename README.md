@@ -13,7 +13,9 @@ Windrift itself is written in ES6+, and this starter package includes the necess
 
 * npm
 
-Everything you need to build a Windrift story is in this package.  
+Everything else you need to build a Windrift story is in this package.  
+
+### Getting started
 
 In the windrift-starter directory:
 
@@ -21,7 +23,7 @@ In the windrift-starter directory:
 npm install
 ```
 
-You should be able to run the built-in dev server right away:
+You should be able to run the built-in development server right away:
 
 ```
 npm start
@@ -36,7 +38,7 @@ At the end of a lot of build statements, you should see:
 webpack: bundle is now VALID.
 ```
 
-Your application will be running on port 8080 by default.
+Your application will be running at http://localhost:8080
 
 The dev server is set up to hot-reload changes: whenever you modify the source, the browser will auto-refresh.
 
@@ -44,8 +46,7 @@ The dev server is set up to hot-reload changes: whenever you modify the source, 
 
 ### Config file setup
 
-Windrift expects a `story.conf` file to contain details about your
-story. It will pass these through to the generated HTML and give
+Windrift expects a `story.json` file to contain details about your story. It will pass these through to the generated HTML and give
 you nice metadata in the final product, which Google will appreciate.
 
 #### story.json
@@ -91,7 +92,7 @@ This package comes with two sample chapters that make use of the primary compone
 
 ### HTML template
 
-The HTML for your story is in this project as `template.hbs`, an HTML file that uses Handlebars templates. You can safely ignore Handlebars itself; this is only used by the webpack bundler to put your `story.json` variables into the <head> and do other setup.
+The HTML for your story is in this project as `template.hbs`, an HTML file that uses Handlebars templates. You can safely ignore Handlebars itself; this is only used by the webpack bundler to put your `story.json` variables into the `<head>` and do other setup.
 
 ### CSS Frameworks
 Windrift outputs HTML that is designed to be compatible with the [Foundation for Sites](http://foundation.zurb.com/sites.html) CSS framework. Foundation isn’t bundled with Windrift, but this starter package references it in the head of `template.hbs`. Feel free to swap out Foundation for Bootstrap, or a custom framework of your choice.

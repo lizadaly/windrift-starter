@@ -17,6 +17,12 @@ export default ({currentSection, inventory}) => {
         for writing interactive stories. The source code for this demo is available in
         the <a href="https://github.com/lizadaly/windrift-starter">windrift-starter</a> repository.
       </p>
+      <h4>Read me first</h4>
+      <p>
+        If you have not yet read the <a href="https://github.com/lizadaly/windrift">Windrift core README</a>,
+        you should do that first! It explains the high level design of Windrift as well as the key
+        concepts you’ll need to follow along with the rest of this tutorial.
+      </p>
       <p>
         This page will walk through some of the most common features of a Windrift story,
         and can be used as a way to bootstrap your own story.
