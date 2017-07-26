@@ -1,6 +1,6 @@
 {
   "name": "windrift-starter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple framework for getting started with a Windrift story",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/lizadaly/windrift-starter#readme",
   "dependencies": {
-    "windrift": "1.0.2"
+    "windrift": "1.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
