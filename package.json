@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/lizadaly/windrift-starter#readme",
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
     "windrift": "1.0.8"
   },
   "devDependencies": {
