@@ -1,9 +1,31 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var config = require("./story.json");
+const config = require("./story.json");
 const path = require('path')
+const PROD = (process.env.NODE_ENV === 'production')
+
+var prodPlugins = PROD ? [
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          screw_ie8: true
+        },
+        comments: false
+    }),
+   new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify("production")
+           }
+   })
+  ] : [new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify("develop")
+        }
+      })
+    ]
 
 module.exports = [{
   context: __dirname,
@@ -20,7 +42,9 @@ module.exports = [{
     loaders: [{ test: /.js/, loaders: ['babel-loader?cacheDirectory']},
               { test: /\.json$/, loader: 'json-loader' },
               { test: /\.html$/, loader: 'html-loader'},
-              { test: /\.hbs/, loader: 'handlebars-loader'}
+              { test: /\.hbs/, loader: 'handlebars-loader'},
+              { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+              { test: /\.(png|jpg|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"}
     ]
   },
   plugins: [
@@ -42,11 +66,11 @@ module.exports = [{
       { from: 'images', to: 'images' },
       { from: 'story.json'}
     ])
-  ]
+  ].concat(prodPlugins)
 }];
 
 function getEntrySources(sources) {
-    if (process.env.NODE_ENV !== 'production') {
+    if (!PROD) {
         sources.push('webpack-dev-server/client?http://localhost:8080');
     }
     return sources;
