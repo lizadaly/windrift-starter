@@ -13,7 +13,7 @@ Windrift itself is written in ES6+, and this starter package includes the necess
 
 * npm
 
-Everything else you need to build a Windrift story is in this package.  
+Everything else you need to build a Windrift story is in this package.
 
 ### Getting started
 
@@ -121,10 +121,10 @@ In addition, there are special styles that get applied during transitions betwee
 .section-enter, .section-appear
 
 /* Applied when removing new sections */
-.section-leave
+.section-exit
 ```
 
-This is provided straight out of the [ReactTransitionGroup](https://facebook.github.io/react/docs/animation.html) add-on to React itself.
+This is provided straight out of the [ReactTransitionGroup](https://github.com/reactjs/react-transition-group) add-on to React.
 
 This is the CSS that was used in [Stone Harbor](https://stoneharborgame.com/), as a reference:
 
@@ -139,11 +139,11 @@ This is the CSS that was used in [Stone Harbor](https://stoneharborgame.com/), a
   transition: opacity 500ms ease-in;
 }
 
-.section-leave {
+.section-exit {
   opacity: 1;
 }
 
-.section-leave.section-leave-active {
+.section-exit.section-exit-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }

@@ -28,3 +28,22 @@ chapter should be visible */
 .pagination-by-section .current-chapter .current-section {
   display: block
 }
+
+/* Base animations */
+.section-enter, .section-appear {
+  opacity: 0.01;
+}
+
+.section-enter.section-enter-active, .section-appear.section-appear-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.section-exit {
+  opacity: 1;
+}
+
+.section-exit.section-exit-active {
+  opacity: 0.01;
+  transition: opacity 200ms ease-in;
+}
