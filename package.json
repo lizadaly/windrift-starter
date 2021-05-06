@@ -35,7 +35,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "copy-webpack-plugin": "^4.5.1",
     "extract-text-webpack-plugin": "^2.1.0",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.3.0",
