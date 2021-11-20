@@ -1,3 +1,7 @@
+## Note: this project is deprecated
+
+⚠️ Nov 20, 2021: Windrift is approaching a 2.0 release in which this package will no longer be necessary. If you have not yet started working with Windrift, it's recommended to wait for the 2.0 release, which should occur before the end of 2021. See https://github.com/lizadaly/windrift for the current project status.
+
 # Windrift Starter app
 
 This repository is designed to help you get started writing a [Windrift](https://github.com/lizadaly/windrift) story. Windrift is a framework for creating interactive stories using React and Redux.
